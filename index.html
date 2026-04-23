@@ -146,6 +146,53 @@ input,select,textarea,button{font-family:var(--body)}
 .login-card p{font-size:.8rem;color:var(--text2);margin-bottom:1.5rem;line-height:1.5}
 .login-footer{position:absolute;bottom:1.5rem;font-size:.75rem;color:var(--text3);letter-spacing:.05em;animation:fadeIn 1s 1s both}
 
+
+
+/* ============================================================
+   TABLES PANEL
+============================================================ */
+.tables-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem;margin-top:1rem}
+.table-card{border-radius:var(--radius2);padding:1.1rem;text-align:center;transition:all .3s cubic-bezier(.34,1.56,.64,1);position:relative;cursor:default;border:2px solid transparent}
+.table-card.empty{background:var(--surface);border-color:var(--border)}
+.table-card.occupied{background:rgba(255,107,71,.08);border-color:rgba(255,107,71,.35);box-shadow:0 0 16px rgba(255,107,71,.12)}
+.table-card.occupied:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,107,71,.2)}
+.table-icon{font-size:2rem;margin-bottom:.5rem}
+.table-num{font-family:var(--display);font-size:1.6rem;letter-spacing:.04em;line-height:1}
+.table-num.occupied{color:var(--coral)}
+.table-num.empty{color:var(--text3)}
+.table-status-badge{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:20px;margin-top:.35rem;display:inline-block}
+.tsb-occupied{background:rgba(255,107,71,.15);color:var(--coral)}
+.tsb-empty{background:rgba(255,255,255,.04);color:var(--text3)}
+.table-guest{font-size:.72rem;color:var(--text2);margin-top:.3rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.table-total{font-family:var(--mono);font-size:.8rem;color:var(--coral);margin-top:.2rem;font-weight:600}
+.table-clear-btn{position:absolute;top:.4rem;right:.4rem;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:var(--red);border-radius:6px;padding:.15rem .4rem;font-size:.65rem;cursor:pointer;transition:all .2s;opacity:0;font-family:var(--body)}
+.table-card.occupied:hover .table-clear-btn{opacity:1}
+.table-clear-btn:hover{background:var(--red);color:#fff}
+.tables-legend{display:flex;gap:1.2rem;margin-bottom:1rem;font-size:.78rem;color:var(--text2);align-items:center}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.leg-dot.occ{background:var(--coral)}
+.leg-dot.emp{background:var(--text3)}
+.tables-summary{display:flex;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.ts-pill{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.5rem .9rem;font-size:.8rem;display:flex;align-items:center;gap:.5rem}
+.ts-pill .tp-val{font-family:var(--display);font-size:1.2rem;letter-spacing:.03em}
+.ts-pill .tp-lbl{color:var(--text2);font-size:.72rem}
+
+/* ============================================================
+   MASA SCREEN
+============================================================ */
+#screen-masa{flex-direction:column;align-items:center;justify-content:center;background:var(--bg)}
+.masa-wrap{text-align:center;animation:fadeUp .45s ease;width:min(380px,90vw)}
+.masa-wrap h2{font-family:var(--display);font-size:3rem;letter-spacing:.05em;margin-bottom:.3rem}
+.masa-wrap p{color:var(--text2);font-size:.88rem;margin-bottom:2rem}
+.masa-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:1.5rem}
+.masa-btn{background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:.9rem .4rem;cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1);font-family:var(--display);font-size:1.4rem;color:var(--text2);letter-spacing:.04em}
+.masa-btn:hover{border-color:var(--coral);background:var(--coral3);color:var(--coral);transform:scale(1.08)}
+.masa-btn.sel{border-color:var(--coral);background:var(--coral3);color:var(--coral);box-shadow:0 0 16px rgba(255,107,71,.25)}
+.masa-custom-row{display:flex;gap:.6rem;margin-bottom:1.2rem}
+.masa-custom-inp{flex:1;background:rgba(0,0,0,.3);border:2px solid var(--border);border-radius:10px;padding:.65rem 1rem;color:var(--text);font-size:1rem;font-family:var(--mono);outline:none;transition:all .2s;text-align:center}
+.masa-custom-inp:focus{border-color:var(--coral);background:rgba(255,107,71,.05)}
+.masa-custom-inp::placeholder{color:var(--text3);font-family:var(--body)}
+
 /* ============================================================
    LANG SCREEN
 ============================================================ */
@@ -585,6 +632,22 @@ input,select,textarea,button{font-family:var(--body)}
   </div>
 </div>
 
+
+<!-- ============================================================
+     SCREEN: MASA (Table Number)
+============================================================ -->
+<div id="screen-masa" class="screen" style="align-items:center;justify-content:center">
+  <div class="masa-wrap">
+    <h2 id="masa-title">Masa Seçin</h2>
+    <p id="masa-sub">Siparişiniz hangi masaya gelsin?</p>
+    <div class="masa-grid" id="masa-grid"></div>
+    <div class="masa-custom-row">
+      <input class="masa-custom-inp" id="masa-custom" type="number" min="1" max="99" placeholder="Farklı masa no girin..." onkeydown="if(event.key==='Enter')confirmMasa()">
+    </div>
+    <button class="btn btn-coral btn-full" onclick="confirmMasa()" id="masa-confirm-btn" style="padding:.8rem">Devam Et →</button>
+  </div>
+</div>
+
 <!-- ============================================================
      SCREEN: ADMIN
 ============================================================ -->
@@ -596,6 +659,7 @@ input,select,textarea,button{font-family:var(--body)}
     <div class="sb-item active" onclick="showPanel('overview',this)"><span class="ico">📊</span><span>Genel Bakış</span></div>
     <div class="sb-item" onclick="showPanel('menu-mgmt',this)"><span class="ico">🍽️</span><span>Menü</span></div>
     <div class="sb-item" onclick="showPanel('stock',this)"><span class="ico">📦</span><span>Stok & Satış</span></div>
+    <div class="sb-item" onclick="showPanel('tables',this)"><span class="ico">🪑</span><span>Masa Durumu</span><span class="sb-badge" id="tables-occ-badge" style="display:none"></span></div>
     <div class="sb-section">Analitik</div>
     <div class="sb-item" onclick="showPanel('analytics',this)"><span class="ico">📈</span><span>Veri Analizi</span></div>
     <div class="sb-item" onclick="showPanel('campaign',this)"><span class="ico">🎯</span><span>Kampanya</span></div>
@@ -708,7 +772,7 @@ input,select,textarea,button{font-family:var(--body)}
       <!-- DAILY -->
       <div id="tab-daily">
         <div class="chart-card">
-          <h4>📅 Günlük Yoğunluk — Saat Bazlı (Sipariş Sayısı)</h4>
+          <h4>📅 Günlük Yoğunluk — Saat Bazlı (Ziyaretçi Sayısı)</h4>
           <div class="bar-chart-wrap"><div class="bar-chart" id="chart-daily"></div></div>
         </div>
       </div>
@@ -716,7 +780,7 @@ input,select,textarea,button{font-family:var(--body)}
       <!-- WEEKLY -->
       <div id="tab-weekly" style="display:none">
         <div class="chart-card">
-          <h4>📅 Haftalık Yoğunluk — Gün Bazlı (Sipariş Sayısı)</h4>
+          <h4>📅 Haftalık Yoğunluk — Gün Bazlı (Ziyaretçi Sayısı)</h4>
           <div class="bar-chart-wrap"><div class="bar-chart" id="chart-weekly"></div></div>
         </div>
       </div>
@@ -724,7 +788,7 @@ input,select,textarea,button{font-family:var(--body)}
       <!-- MONTHLY -->
       <div id="tab-monthly" style="display:none">
         <div class="chart-card">
-          <h4>📅 Aylık Yoğunluk (Sipariş Sayısı)</h4>
+          <h4>📅 Aylık Yoğunluk (Ziyaretçi Sayısı)</h4>
           <div class="bar-chart-wrap"><div class="bar-chart" id="chart-monthly"></div></div>
         </div>
       </div>
@@ -756,6 +820,24 @@ input,select,textarea,button{font-family:var(--body)}
         <div class="sec-hdr"><h3>Aktif Kampanyalar</h3></div>
         <div class="camp-list" id="camp-list"><div style="color:var(--text2);font-size:.83rem">Kampanya yok.</div></div>
       </div>
+    </div>
+
+
+    <!-- PANEL: TABLES -->
+    <div id="panel-tables" class="panel">
+      <div class="topbar">
+        <div class="page-title">Masa <span>Durumu</span></div>
+        <div class="topbar-right">
+          <button class="btn btn-ghost btn-sm" onclick="renderTablesPanel()">🔄 Yenile</button>
+        </div>
+      </div>
+      <div class="tables-summary" id="tables-summary"></div>
+      <div class="tables-legend">
+        <div style="display:flex;align-items:center;gap:.4rem"><div class="leg-dot occ"></div> Dolu</div>
+        <div style="display:flex;align-items:center;gap:.4rem"><div class="leg-dot emp"></div> Boş</div>
+        <span style="margin-left:.4rem;font-size:.72rem;color:var(--text3)">· Dolu masanın üzerine gelince masayı temizleyebilirsiniz</span>
+      </div>
+      <div class="tables-grid" id="tables-grid"></div>
     </div>
 
   </div><!-- /admin-main -->
@@ -976,7 +1058,7 @@ input,select,textarea,button{font-family:var(--body)}
 ==================================================== */
 const PASS='1234';
 let lang='tr';
-let user={name:'',phone:''};
+let user={name:'',phone:'',table:''};
 let menuItems=[];
 let cart=[];
 let campaigns=[];
@@ -987,6 +1069,7 @@ let payMethod='card';
 let tipAmount=0;
 let menuFilter='all';
 let rushVisible=false;
+let activeTables={};// tableNo -> {user, total, ts, items}
 
 const EMOJIS={yemek:'🍖',sicak:'☕',soguk:'🧊',corba:'🍲'};
 const DAYS=['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
@@ -1011,7 +1094,7 @@ const T={
     cardL:'Credit Card',cashL:'Cash',cardNo:'Card Number',cardExp:'Expiry',tipL:'Tip (Optional)',
     payBtn:'Complete Payment',cashNotice:'🔴 Please go to the cashier.',
     note:'Add note...',addCart:'Add to Cart',success:'PAYMENT SUCCESSFUL',fail:'PAYMENT FAILED',
-    rank:'Ranking',totalL:'Total',
+    rank:'Ranking',totalL:'Total',masaTitle:'Select Table',masaSub:'Which table is your order for?',masaConfirm:'Continue',masaPH:'Enter a different table no...',
     rushTitle:'In a Rush!',rushSub:'See the fastest dishes and order now.',
     rushBtn:'Show Quick Dishes',rushHide:'Hide'},
   es:{greet:'Bienvenido/a',weekFav:'El Favorito de la Semana',popSub:'Más solicitado',
@@ -1021,7 +1104,7 @@ const T={
     cardL:'Tarjeta',cashL:'Efectivo',cardNo:'Número de Tarjeta',cardExp:'Vencimiento',tipL:'Propina (Opcional)',
     payBtn:'Completar Pago',cashNotice:'🔴 Por favor diríjase a caja.',
     note:'Añadir nota...',addCart:'Agregar',success:'PAGO EXITOSO',fail:'PAGO FALLIDO',
-    rank:'Clasificación',totalL:'Total',
+    rank:'Clasificación',totalL:'Total',masaTitle:'Seleccionar Mesa',masaSub:'¿Para qué mesa es tu pedido?',masaConfirm:'Continuar',masaPH:'Ingresa otro número de mesa...',
     rushTitle:'¡Sin Tiempo!',rushSub:'Ve los platos más rápidos y pide ahora.',
     rushBtn:'Mostrar Platos Rápidos',rushHide:'Ocultar'}
 };
@@ -1108,7 +1191,35 @@ function logout(){showScreen('screen-login')}
 /* ====================================================
    LANGUAGE
 ==================================================== */
-function pickLang(l){lang=l;applyLang();renderCustomer();showScreen('screen-customer')}
+function pickLang(l){
+  lang=l;applyLang();
+  renderMasaGrid();
+  showScreen('screen-masa');
+}
+function renderMasaGrid(){
+  const grid=$('masa-grid');
+  const t=T[lang];
+  $('masa-title').textContent=t.masaTitle||'Masa Seçin';
+  $('masa-sub').textContent=t.masaSub||'Siparişiniz hangi masaya gelsin?';
+  $('masa-confirm-btn').textContent=(t.masaConfirm||'Devam Et')+' →';
+  const ci=$('masa-custom');if(ci)ci.placeholder=t.masaPH||'Farklı masa no girin...';
+  grid.innerHTML=Array.from({length:20},(_,i)=>i+1).map(n=>`
+    <div class="masa-btn" id="masabtn-${n}" onclick="selectMasa(${n})">${n}</div>`).join('');
+}
+function selectMasa(n){
+  document.querySelectorAll('.masa-btn').forEach(b=>b.classList.remove('sel'));
+  const btn=$('masabtn-'+n);if(btn)btn.classList.add('sel');
+  const ci=$('masa-custom');if(ci)ci.value='';
+  user.table=String(n);
+}
+function confirmMasa(){
+  const custom=$('masa-custom').value.trim();
+  if(custom)user.table=custom;
+  if(!user.table){
+    toast('Lütfen bir masa seçin!','error');return;
+  }
+  renderCustomer();showScreen('screen-customer');
+}
 function switchLang(l){
   lang=l;
   document.querySelectorAll('#lang-pill button').forEach((b,i)=>{
@@ -1119,7 +1230,7 @@ function switchLang(l){
 function applyLang(){
   const t=T[lang];
   const s=(id,val)=>{const el=$(id);if(el)el.textContent=val};
-  s('user-name-chip',user.name.split(' ')[0]);
+  s('user-name-chip',user.name.split(' ')[0]+(user.table?' · Masa '+user.table:''));
   const av=$('user-av');if(av)av.textContent=user.name[0]?.toUpperCase()||'U';
   s('hero-tag',t.weekFav);
   s('hero-h',t.greet+', '+user.name.split(' ')[0]+'! 👋');
@@ -1150,11 +1261,13 @@ function showPanel(id,el){
   const panelId=id==='overview'?'panel-overview':
     id==='menu-mgmt'?'panel-menu-mgmt':
     id==='stock'?'panel-stock':
-    id==='analytics'?'panel-analytics':'panel-campaign';
+    id==='analytics'?'panel-analytics':
+    id==='tables'?'panel-tables':'panel-campaign';
   $(panelId).classList.add('active');
   document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
   if(el)el.classList.add('active');
   if(id==='stock')renderStockPanel();
+  if(id==='tables')renderTablesPanel();
   if(id==='analytics'){renderDailyChart();renderWeeklyChart();renderMonthlyChart()}
   if(id==='campaign')renderCampaignPanel();
   if(id==='overview')renderOverview();
@@ -1166,6 +1279,9 @@ function renderOverview(){
   $('ov-order-count').textContent=orders.length;
   $('ov-revenue').textContent='₺'+orders.reduce((s,o)=>s+o.total,0).toLocaleString();
   $('ov-camp-count').textContent=campaigns.length;
+  // update occupied tables badge in sidebar if exists
+  const occCount=Object.keys(activeTables).length;
+  const tbadge=$('tables-occ-badge');if(tbadge){tbadge.textContent=occCount>0?occCount:'';tbadge.style.display=occCount>0?'':'none';}
   const ov=$('ov-orders');
   if(orders.length===0){ov.innerHTML='<div style="color:var(--text2)">Henüz sipariş yok.</div>'}
   else{ov.innerHTML=orders.slice(-5).reverse().map(o=>`<div style="padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.82rem;display:flex;justify-content:space-between"><span>${o.user}</span><span style="color:var(--coral);font-family:var(--mono)">₺${o.total}</span></div>`).join('')}
@@ -1269,29 +1385,31 @@ function renderStockPanel(){
    ADMIN: ANALYTICS — computed from orders
 ==================================================== */
 function computeHourlyCounts(){
-  // 8 buckets: 08-10, 10-12, 12-14, 14-16, 16-18, 18-20, 20-22, 22-24
+  // Count unique visitors (by user name) per 2-hour slot
   const labels=['08-10','10-12','12-14','14-16','16-18','18-20','20-22','22-24'];
-  const counts=Array(8).fill(0);
+  const sets=Array.from({length:8},()=>new Set());
   orders.forEach(o=>{
     const h=new Date(o.ts).getHours();
     const bucket=Math.min(7,Math.max(0,Math.floor((h-8)/2)));
-    counts[bucket]++;
+    sets[bucket].add(o.user);
   });
-  return{labels,counts};
+  return{labels,counts:sets.map(s=>s.size)};
 }
 function computeWeeklyCounts(){
-  const counts=Array(7).fill(0);
+  // Count unique visitors per weekday
+  const sets=Array.from({length:7},()=>new Set());
   orders.forEach(o=>{
-    const d=new Date(o.ts).getDay();// 0=Sun
-    const idx=d===0?6:d-1;// Mon=0
-    counts[idx]++;
+    const d=new Date(o.ts).getDay();
+    const idx=d===0?6:d-1;
+    sets[idx].add(o.user);
   });
-  return{labels:DAYS,counts};
+  return{labels:DAYS,counts:sets.map(s=>s.size)};
 }
 function computeMonthlyCounts(){
-  const counts=Array(12).fill(0);
-  orders.forEach(o=>{counts[new Date(o.ts).getMonth()]++});
-  return{labels:MONTHS,counts};
+  // Count unique visitors per month
+  const sets=Array.from({length:12},()=>new Set());
+  orders.forEach(o=>{sets[new Date(o.ts).getMonth()].add(o.user)});
+  return{labels:MONTHS,counts:sets.map(s=>s.size)};
 }
 
 function renderBar(elId,labels,values,suffix='kişi'){
@@ -1310,9 +1428,9 @@ function renderBar(elId,labels,values,suffix='kişi'){
       </div>
     </div>`;}).join('');
 }
-function renderDailyChart(){const{labels,counts}=computeHourlyCounts();renderBar('chart-daily',labels,counts,'sipariş')}
-function renderWeeklyChart(){const{labels,counts}=computeWeeklyCounts();renderBar('chart-weekly',labels,counts,'sipariş')}
-function renderMonthlyChart(){const{labels,counts}=computeMonthlyCounts();renderBar('chart-monthly',labels,counts,'sipariş')}
+function renderDailyChart(){const{labels,counts}=computeHourlyCounts();renderBar('chart-daily',labels,counts,'kişi')}
+function renderWeeklyChart(){const{labels,counts}=computeWeeklyCounts();renderBar('chart-weekly',labels,counts,'kişi')}
+function renderMonthlyChart(){const{labels,counts}=computeMonthlyCounts();renderBar('chart-monthly',labels,counts,'kişi')}
 
 function switchTab(t,btn){
   ['daily','weekly','monthly'].forEach(x=>$('tab-'+x).style.display=x===t?'block':'none');
@@ -1632,7 +1750,8 @@ function finalizeOrder(){
   const total=base+tipAmount;
   const pts=Math.floor(base/10);
   const ts=Date.now();
-  orders.push({user:user.name,items:[...cart],total,pts,ts});
+  orders.push({user:user.name,items:[...cart],total,pts,ts,table:user.table});
+  if(user.table)activeTables[user.table]={user:user.name,total,ts,items:cart.map(i=>i.name)};
   const lb=leaderboard.find(l=>l.name===user.name);
   if(lb)lb.pts+=pts;else leaderboard.push({name:user.name,pts});
 
@@ -1668,25 +1787,63 @@ function showResult(ok){
   },2800);
 }
 
+
+/* ====================================================
+   TABLES PANEL
+==================================================== */
+function renderTablesPanel(){
+  // Collect all known table numbers (from activeTables + masa buttons 1-20)
+  const known=new Set([...Array.from({length:20},(_,i)=>String(i+1)),...Object.keys(activeTables)]);
+  const sorted=[...known].sort((a,b)=>Number(a)-Number(b)||a.localeCompare(b));
+  const occupied=Object.keys(activeTables).length;
+  const total=sorted.length;
+  const empty=total-occupied;
+
+  // Summary pills
+  $('tables-summary').innerHTML=`
+    <div class="ts-pill"><div class="tp-val" style="color:var(--coral)">${total}</div><div class="tp-lbl">Toplam Masa</div></div>
+    <div class="ts-pill"><div class="tp-val" style="color:var(--coral)">${occupied}</div><div class="tp-lbl">Dolu</div></div>
+    <div class="ts-pill"><div class="tp-val" style="color:var(--green)">${empty}</div><div class="tp-lbl">Boş</div></div>
+    <div class="ts-pill"><div class="tp-val" style="color:var(--gold)">${occupied>0?Math.round((occupied/total)*100):0}%</div><div class="tp-lbl">Doluluk Oranı</div></div>
+  `;
+
+  $('tables-grid').innerHTML=sorted.map(n=>{
+    const info=activeTables[n];
+    const isOcc=!!info;
+    return`<div class="table-card ${isOcc?'occupied':'empty'}">
+      ${isOcc?`<button class="table-clear-btn" onclick="clearTable('${n}')">✕ Boşalt</button>`:''}
+      <div class="table-icon">${isOcc?'🔴':'🟢'}</div>
+      <div class="table-num ${isOcc?'occupied':'empty'}">${n}</div>
+      <div class="table-status-badge ${isOcc?'tsb-occupied':'tsb-empty'}">${isOcc?'Dolu':'Boş'}</div>
+      ${isOcc?`<div class="table-guest">👤 ${info.user.split(' ')[0]}</div><div class="table-total">₺${info.total.toFixed(0)}</div>`:''}
+    </div>`;}).join('');
+}
+function clearTable(n){
+  delete activeTables[n];
+  renderTablesPanel();
+  renderOverview();
+  toast(`Masa ${n} boşaltıldı`,'info');
+}
+
 /* ====================================================
    DEFAULT MENU
 ==================================================== */
 const DEFAULT_MENU=[
-  {id:'dm01',name:'Adana Kebabı',cat:'yemek',price:220,time:25,rating:4.8,stock:null,photo:'https://images.ntv.com.tr/images/475adca6-b54a-4e83-a08e-ccdf584d9415.jpg?w=1200&height=1200&mode=crop'},
-  {id:'dm02',name:'Tokat Kebabı',cat:'yemek',price:200,time:22,rating:4.6,emoji:'🍖',stock:null,photo:'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400&q=80'},
-  {id:'dm03',name:'Izgara Tavuk',cat:'yemek',price:175,time:18,rating:4.5,emoji:'🍗',stock:null,photo:'https://images.unsplash.com/photo-1598103442097-8b74394b95c4?w=400&q=80'},
-  {id:'dm04',name:'Lahmacun',cat:'yemek',price:90,time:12,rating:4.7,emoji:'🫓',stock:null,photo:'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80'},
-  {id:'dm05',name:'Bonfile',cat:'yemek',price:320,time:30,rating:4.9,emoji:'🥩',stock:null,photo:'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80'},
-  {id:'dm06',name:'Mercimek Çorbası',cat:'corba',price:60,time:10,rating:4.6,emoji:'🍲',stock:null,photo:'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80'},
-  {id:'dm07',name:'Domates Çorbası',cat:'corba',price:55,time:10,rating:4.4,emoji:'🍅',stock:null,photo:'https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80'},
-  {id:'dm08',name:'Mısır Çorbası',cat:'corba',price:58,time:10,rating:4.3,emoji:'🌽',stock:null,photo:'https://images.unsplash.com/photo-1571104508999-893933ded431?w=400&q=80'},
-  {id:'dm09',name:'Tarhana Çorbası',cat:'corba',price:52,time:10,rating:4.5,emoji:'🥣',stock:null,photo:'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400&q=80'},
-  {id:'dm10',name:'Kola',cat:'soguk',price:35,time:1,rating:4.2,emoji:'🥤',stock:10,photo:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80'},
-  {id:'dm11',name:'Ayran',cat:'soguk',price:20,time:1,rating:4.6,emoji:'🥛',stock:10,photo:'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80'},
-  {id:'dm12',name:'Ice Tea',cat:'soguk',price:38,time:1,rating:4.1,emoji:'🍹',stock:10,photo:'https://images.unsplash.com/photo-1499638673689-79a0b5115d87?w=400&q=80'},
-  {id:'dm13',name:'Su',cat:'soguk',price:10,time:1,rating:4.0,emoji:'💧',stock:15,photo:'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80'},
-  {id:'dm14',name:'Türk Kahvesi',cat:'sicak',price:45,time:8,rating:4.7,emoji:'☕',stock:10,photo:'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&q=80'},
-  {id:'dm15',name:'Çay',cat:'sicak',price:15,time:5,rating:4.8,emoji:'🍵',stock:20,photo:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80'},
+  {id:'dm01',name:'Adana Kebabı',cat:'yemek',price:220,time:25,rating:4.8,emoji:'🥩',stock:null,photo:'https://cdn.karaca.com/cms/adana_kebap_tarifi_78bbe79b79.webp'},
+  {id:'dm02',name:'Tokat Kebabı',cat:'yemek',price:200,time:22,rating:4.6,emoji:'🍖',stock:null,photo:'https://gastrotokat.com/wp-content/uploads/2023/05/TOKAT-KEBABI.jpg'},
+  {id:'dm03',name:'Izgara Tavuk',cat:'yemek',price:175,time:18,rating:4.5,emoji:'🍗',stock:null,photo:'https://i.tmgrup.com.tr/sfr/2025/07/21/izgara-tavuk-gogsu-1753082572943.jpg'},
+  {id:'dm04',name:'Lahmacun',cat:'yemek',price:90,time:12,rating:4.7,emoji:'🫓',stock:null,photo:'https://d17wu0fn6x6rgz.cloudfront.net/img/w/tarif/mgt/2-32.webp'},
+  {id:'dm05',name:'Bonfile',cat:'yemek',price:320,time:30,rating:4.9,emoji:'🥩',stock:null,photo:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREVqvdLguXI49MwaUnKt9JQxQWjGqQfTDc9Q&s'},
+  {id:'dm06',name:'Mercimek Çorbası',cat:'corba',price:60,time:10,rating:4.6,emoji:'🍲',stock:null,photo:'https://i.lezzet.com.tr/images-xxlarge-recipe/unsuz-mercimek-corbasi-4e0cfce9-1781-467c-90d8-58171f83530b.jpg'},
+  {id:'dm07',name:'Domates Çorbası',cat:'corba',price:55,time:10,rating:4.4,emoji:'🍅',stock:null,photo:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWGs0e3JxEmLOrJYgJBBkkCuQyGlaABE36IA&s'},
+  {id:'dm08',name:'Mısır Çorbası',cat:'corba',price:58,time:10,rating:4.3,emoji:'🌽',stock:null,photo:'https://www.unileverfoodsolutions.com.tr/dam/global-ufs/mcos/TURKEY/calcmenu/recipes/TR-recipes/general/lahanal%C4%B1-m%C4%B1s%C4%B1r-%C3%A7orbas%C4%B1/preview.jpg'},
+  {id:'dm09',name:'Tarhana Çorbası',cat:'corba',price:52,time:10,rating:4.5,emoji:'🥣',stock:null,photo:'https://www.kevserinmutfagi.com/wp-content/uploads/2008/11/tarhana_corbasi2-1.jpg'},
+  {id:'dm10',name:'Kola',cat:'soguk',price:35,time:1,rating:4.2,emoji:'🥤',stock:10,photo:'https://m.media-amazon.com/images/I/81dN2PPmowL._AC_UF1000,1000_QL80_.jpg'},
+  {id:'dm11',name:'Ayran',cat:'soguk',price:20,time:1,rating:4.6,emoji:'🥛',stock:10,photo:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmA3JB699VsRB7nfD_KADB4SCf8XZNr-gCUw&s'},
+  {id:'dm12',name:'Ice Tea',cat:'soguk',price:38,time:1,rating:4.1,emoji:'🍹',stock:10,photo:'https://www.shutterstock.com/image-photo/glass-iced-tea-lemon-wedge-260nw-2584159473.jpg'},
+  {id:'dm13',name:'Su',cat:'soguk',price:10,time:1,rating:4.0,emoji:'💧',stock:15,photo:'https://cdn.dsmcdn.com/ty1538/product/media/images/ty1538/prod/QC/20240911/19/0445c021-f41b-32fe-90e4-1d036c1d35d9/1_org_zoom.jpg'},
+  {id:'dm14',name:'Türk Kahvesi',cat:'sicak',price:45,time:8,rating:4.7,emoji:'☕',stock:10,photo:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmg_lywjJZbtnYKI6TnJwLD0b5FGUYXu3smg&s'},
+  {id:'dm15',name:'Çay',cat:'sicak',price:15,time:5,rating:4.8,emoji:'🍵',stock:20,photo:'https://i.nefisyemektarifleri.com/2023/09/28/cay-kac-kalori.jpg'},
 ];
 
 /* ====================================================
