@@ -1218,7 +1218,15 @@ function confirmMasa(){
   if(!user.table){
     toast('Lütfen bir masa seçin!','error');return;
   }
+  // Mark table as occupied immediately when customer sits down
+  activeTables[user.table]={user:user.name,total:0,ts:Date.now(),items:[],pending:true};
+  updateTablesBadge();
   renderCustomer();showScreen('screen-customer');
+}
+function updateTablesBadge(){
+  const occCount=Object.keys(activeTables).length;
+  const tbadge=$('tables-occ-badge');
+  if(tbadge){tbadge.textContent=occCount>0?occCount:'';tbadge.style.display=occCount>0?'':'none';}
 }
 function switchLang(l){
   lang=l;
@@ -1279,9 +1287,7 @@ function renderOverview(){
   $('ov-order-count').textContent=orders.length;
   $('ov-revenue').textContent='₺'+orders.reduce((s,o)=>s+o.total,0).toLocaleString();
   $('ov-camp-count').textContent=campaigns.length;
-  // update occupied tables badge in sidebar if exists
-  const occCount=Object.keys(activeTables).length;
-  const tbadge=$('tables-occ-badge');if(tbadge){tbadge.textContent=occCount>0?occCount:'';tbadge.style.display=occCount>0?'':'none';}
+  updateTablesBadge();
   const ov=$('ov-orders');
   if(orders.length===0){ov.innerHTML='<div style="color:var(--text2)">Henüz sipariş yok.</div>'}
   else{ov.innerHTML=orders.slice(-5).reverse().map(o=>`<div style="padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.82rem;display:flex;justify-content:space-between"><span>${o.user}</span><span style="color:var(--coral);font-family:var(--mono)">₺${o.total}</span></div>`).join('')}
@@ -1751,7 +1757,8 @@ function finalizeOrder(){
   const pts=Math.floor(base/10);
   const ts=Date.now();
   orders.push({user:user.name,items:[...cart],total,pts,ts,table:user.table});
-  if(user.table)activeTables[user.table]={user:user.name,total,ts,items:cart.map(i=>i.name)};
+  if(user.table){activeTables[user.table]={user:user.name,total,ts,items:cart.map(i=>i.name),pending:false};}
+  updateTablesBadge();
   const lb=leaderboard.find(l=>l.name===user.name);
   if(lb)lb.pts+=pts;else leaderboard.push({name:user.name,pts});
 
@@ -1815,7 +1822,7 @@ function renderTablesPanel(){
       <div class="table-icon">${isOcc?'🔴':'🟢'}</div>
       <div class="table-num ${isOcc?'occupied':'empty'}">${n}</div>
       <div class="table-status-badge ${isOcc?'tsb-occupied':'tsb-empty'}">${isOcc?'Dolu':'Boş'}</div>
-      ${isOcc?`<div class="table-guest">👤 ${info.user.split(' ')[0]}</div><div class="table-total">₺${info.total.toFixed(0)}</div>`:''}
+      ${isOcc?`<div class="table-guest">👤 ${info.user.split(' ')[0]}</div><div class="table-total">${info.pending?'<span style="color:var(--gold);font-size:.72rem">⏳ Sipariş bekleniyor</span>':`₺${info.total.toFixed(0)}`}</div>`:''}
     </div>`;}).join('');
 }
 function clearTable(n){
@@ -1845,7 +1852,6 @@ const DEFAULT_MENU=[
   {id:'dm14',name:'Türk Kahvesi',cat:'sicak',price:45,time:8,rating:4.7,emoji:'☕',stock:10,photo:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmg_lywjJZbtnYKI6TnJwLD0b5FGUYXu3smg&s'},
   {id:'dm15',name:'Çay',cat:'sicak',price:15,time:5,rating:4.8,emoji:'🍵',stock:20,photo:'https://i.nefisyemektarifleri.com/2023/09/28/cay-kac-kalori.jpg'},
 ];
-
 /* ====================================================
    INIT
 ==================================================== */
