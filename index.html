@@ -121,6 +121,7 @@ input,select,textarea,button{font-family:var(--body)}
 .toast-success{border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.08)}
 .toast-error{border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.08)}
 .toast-info{border-color:var(--border2)}
+.toast-warn{border-color:rgba(212,168,71,.4);background:rgba(212,168,71,.08)}
 
 /* ============================================================
    LOGIN SCREEN
@@ -246,6 +247,7 @@ input,select,textarea,button{font-family:var(--body)}
 .drink-stock-fill.warn{background:linear-gradient(90deg,var(--red),#C93535)}
 .drink-count{font-family:var(--mono);font-size:.82rem;font-weight:600;min-width:28px;text-align:right}
 .drink-count.ok{color:var(--green)}.drink-count.warn{color:var(--red)}
+.drink-warn-badge{font-size:.7rem;color:var(--gold);background:rgba(212,168,71,.12);border:1px solid rgba(212,168,71,.25);border-radius:20px;padding:.1rem .45rem;margin-left:.3rem;white-space:nowrap}
 .top-food-item{display:flex;align-items:center;gap:.8rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
 .top-food-item:last-child{border:none}
 .tf-rank{font-family:var(--display);font-size:1.4rem;width:30px;color:var(--coral);text-align:center}
@@ -253,7 +255,8 @@ input,select,textarea,button{font-family:var(--body)}
 .tf-count{font-family:var(--mono);font-size:.8rem;color:var(--text2)}
 .tf-warn{font-size:.72rem;background:rgba(212,168,71,.15);color:var(--gold);border:1px solid rgba(212,168,71,.2);padding:.15rem .5rem;border-radius:20px}
 
-/* ANALYTICS PANEL */
+/* ANALYTICS PANEL — auto computed, read-only bars */
+.analytics-info-banner{background:rgba(255,107,71,.06);border:1px solid rgba(255,107,71,.18);border-radius:12px;padding:.8rem 1.1rem;margin-bottom:1.2rem;font-size:.82rem;color:var(--text2);display:flex;align-items:center;gap:.6rem}
 .chart-tabs{display:flex;gap:.4rem;padding:.3rem;background:rgba(0,0,0,.3);border-radius:12px;width:fit-content;margin-bottom:1.5rem}
 .cht-tab{padding:.5rem 1.3rem;border-radius:9px;border:none;background:transparent;color:var(--text2);font-size:.85rem;cursor:pointer;transition:all .25s;font-family:var(--body);font-weight:500}
 .cht-tab.active{background:var(--coral);color:#fff;box-shadow:0 2px 12px rgba(255,107,71,.4)}
@@ -266,7 +269,7 @@ input,select,textarea,button{font-family:var(--body)}
 .bar-track{flex:1;height:28px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;position:relative}
 .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:.6rem;font-family:var(--mono);font-size:.72rem;color:rgba(255,255,255,.85);font-weight:600;background:linear-gradient(90deg,var(--coral) 0%,var(--coral2) 100%);transition:width .7s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;white-space:nowrap}
 .bar-fill::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);animation:shimmer 2s infinite}
-.chart-inputs{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.2rem;align-items:flex-end;padding-top:1.2rem;border-top:1px solid var(--border)}
+.chart-empty-note{font-size:.82rem;color:var(--text2);padding:1rem 0;text-align:center}
 
 /* CAMPAIGN PANEL */
 .camp-form{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem}
@@ -314,7 +317,7 @@ input,select,textarea,button{font-family:var(--body)}
 .hero-tag{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
 .hero-tag::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--coral);animation:pulse 2s infinite}
 .hero-h{font-family:var(--display);font-size:2.2rem;letter-spacing:.04em;line-height:1.1;margin-bottom:.8rem}
-.pop-card{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.8rem 1.1rem;display:inline-flex;align-items:center;gap.7rem;gap:.7rem}
+.pop-card{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.8rem 1.1rem;display:inline-flex;align-items:center;gap:.7rem}
 .pop-emoji{font-size:2rem}
 .pop-name{font-weight:700;font-size:1.05rem}
 .pop-sub{font-size:.75rem;color:var(--text2)}
@@ -333,7 +336,23 @@ input,select,textarea,button{font-family:var(--body)}
 .craving-inp{flex:1;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:10px;padding:.7rem 1rem;color:var(--text);font-size:.9rem;outline:none;transition:all .2s}
 .craving-inp:focus{border-color:var(--coral)}
 .craving-result{margin-top:.8rem;padding:.9rem;background:var(--coral3);border:1px solid var(--border2);border-radius:10px;font-size:.88rem;display:none;animation:fadeIn .3s ease}
-.craving-result.show{display:flex;align-items:center;gap:.7rem}
+.craving-result.show{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+
+/* SÜREM KISITLI */
+.rush-card{background:linear-gradient(135deg,rgba(212,168,71,.1),rgba(255,107,71,.06));border:1px solid rgba(212,168,71,.3);border-radius:var(--radius);padding:1.2rem;margin-bottom:1.5rem}
+.rush-card h4{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.rush-btn{background:linear-gradient(135deg,var(--gold),#B8902A);color:#1A1200;border:none;border-radius:10px;padding:.65rem 1.4rem;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.5rem;font-family:var(--body)}
+.rush-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,168,71,.4)}
+.rush-results{margin-top:1rem;display:none;animation:fadeIn .3s ease}
+.rush-results.show{display:block}
+.rush-item{display:flex;align-items:center;gap:.8rem;padding:.55rem .7rem;border-radius:10px;background:rgba(0,0,0,.2);border:1px solid rgba(212,168,71,.15);margin-bottom:.5rem;transition:border-color .2s}
+.rush-item:hover{border-color:rgba(212,168,71,.3)}
+.rush-rank{font-family:var(--display);font-size:1.2rem;color:var(--gold);width:24px;text-align:center}
+.rush-emoji{font-size:1.3rem}
+.rush-name{flex:1;font-size:.88rem;font-weight:500}
+.rush-time{font-family:var(--mono);font-size:.78rem;color:var(--gold);background:rgba(212,168,71,.1);border:1px solid rgba(212,168,71,.2);padding:.15rem .5rem;border-radius:20px}
+.rush-add-btn{background:var(--coral3);border:1px solid var(--border2);color:var(--coral);border-radius:7px;padding:.3rem .7rem;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--body)}
+.rush-add-btn:hover{background:var(--coral);color:#fff}
 
 /* SECTION HEADINGS */
 .menu-section-hdr{display:flex;align-items:center;gap:.8rem;margin:2rem 0 1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
@@ -377,7 +396,7 @@ input,select,textarea,button{font-family:var(--body)}
 .cart-close-btn{background:var(--surface);border:1px solid var(--border);color:var(--text2);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .cart-close-btn:hover{color:var(--red);border-color:rgba(239,68,68,.3)}
 .cart-items-wrap{flex:1;overflow-y:auto;padding:1rem 1.5rem}
-.cart-item{display:flex;align-items:center;gap.8rem;gap:.8rem;padding:.75rem 0;border-bottom:1px solid var(--border)}
+.cart-item{display:flex;align-items:center;gap:.8rem;padding:.75rem 0;border-bottom:1px solid var(--border)}
 .ci-emoji{font-size:1.4rem;width:36px;text-align:center;flex-shrink:0}
 .ci-info{flex:1;min-width:0}
 .ci-name{font-size:.88rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -412,11 +431,21 @@ input,select,textarea,button{font-family:var(--body)}
 .pm-option:hover,.pm-option.sel{border-color:var(--coral);background:var(--coral3)}
 .pm-icon-big{font-size:1.8rem;margin-bottom:.4rem}
 .pm-lbl{font-size:.82rem;font-weight:600}
-.cash-notice{background:var(--red2);border:1px solid rgba(239,68,68,.25);border-radius:12px;padding:1rem;text-align:center;color:var(--red);font-weight:700;font-size.9rem;margin-bottom:1rem;display:none;animation:scaleIn .3s ease}
+.cash-notice{background:var(--red2);border:1px solid rgba(239,68,68,.25);border-radius:12px;padding:1rem;text-align:center;color:var(--red);font-weight:700;margin-bottom:1rem;display:none;animation:scaleIn .3s ease}
 .card-form{animation:fadeUp .3s ease}
-.tip-opts{display:flex;gap:.5rem;flex-wrap:wrap}
-.tip-opt{padding:.4rem .8rem;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:.8rem;cursor:pointer;transition:all .2s;font-family:var(--body)}
-.tip-opt.sel{border-color:var(--coral);color:var(--coral);background:var(--coral3)}
+
+/* TIP — manual TL input */
+.tip-wrap{margin-bottom:1rem}
+.tip-wrap label{display:block;font-size:.78rem;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.45rem}
+.tip-input-row{display:flex;align-items:center;gap:.6rem}
+.tip-tl-inp{background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:10px;padding:.65rem 1rem;color:var(--text);font-size:.95rem;font-family:var(--mono);width:120px;outline:none;transition:all .2s}
+.tip-tl-inp:focus{border-color:var(--gold);background:rgba(212,168,71,.05);box-shadow:0 0 0 3px rgba(212,168,71,.1)}
+.tip-currency{font-family:var(--mono);font-size:1.1rem;color:var(--gold);font-weight:700}
+.tip-presets{display:flex;gap:.4rem;flex-wrap:wrap}
+.tip-preset-btn{background:rgba(212,168,71,.08);border:1px solid rgba(212,168,71,.2);color:var(--gold);border-radius:7px;padding:.3rem .65rem;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--body)}
+.tip-preset-btn:hover{background:rgba(212,168,71,.18)}
+.tip-total-preview{font-size:.78rem;color:var(--text2);margin-top:.4rem;font-family:var(--mono)}
+
 .pay-actions{display:flex;gap:.7rem;margin-top:1.2rem}
 
 /* RESULT */
@@ -474,7 +503,7 @@ input,select,textarea,button{font-family:var(--body)}
     <div class="orb orb3"></div>
   </div>
   <div class="login-brand">
-    <div class="login-brand .logo-big" style="font-family:var(--display);font-size:5.5rem;letter-spacing:.08em;animation:glow 3s ease-in-out infinite">
+    <div style="font-family:var(--display);font-size:5.5rem;letter-spacing:.08em;animation:glow 3s ease-in-out infinite">
       GASTR<span style="color:var(--coral)">O</span>
     </div>
     <div style="font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--text2);margin-top:.4rem">Premium Restaurant Management OS</div>
@@ -664,9 +693,12 @@ input,select,textarea,button{font-family:var(--body)}
       </div>
     </div>
 
-    <!-- PANEL: ANALYTICS -->
+    <!-- PANEL: ANALYTICS — auto-computed from orders -->
     <div id="panel-analytics" class="panel">
       <div class="topbar"><div class="page-title">Veri <span>Analizi</span></div></div>
+      <div class="analytics-info-banner">
+        📊 Grafikler, gerçek sipariş verilerinden otomatik hesaplanır. Manuel giriş gerekmez.
+      </div>
       <div class="chart-tabs">
         <button class="cht-tab active" onclick="switchTab('daily',this)">Günlük</button>
         <button class="cht-tab" onclick="switchTab('weekly',this)">Haftalık</button>
@@ -676,59 +708,24 @@ input,select,textarea,button{font-family:var(--body)}
       <!-- DAILY -->
       <div id="tab-daily">
         <div class="chart-card">
-          <h4>📅 Günlük Yoğunluk — Saat Bazlı</h4>
+          <h4>📅 Günlük Yoğunluk — Saat Bazlı (Sipariş Sayısı)</h4>
           <div class="bar-chart-wrap"><div class="bar-chart" id="chart-daily"></div></div>
-          <div class="chart-inputs">
-            <div class="field" style="margin:0;flex:1;min-width:120px"><label>Saat</label>
-              <select id="d-hour">
-                <option>09:00</option><option>11:00</option><option>13:00</option>
-                <option>15:00</option><option>17:00</option><option>19:00</option>
-                <option>21:00</option><option>23:00</option>
-              </select></div>
-            <div class="field" style="margin:0;flex:1;min-width:140px"><label>Yoğunluk (10–80)</label>
-              <input type="number" id="d-val" min="10" max="80" placeholder="45"></div>
-            <button class="btn btn-coral" onclick="applyDaily()" style="align-self:flex-end">Uygula</button>
-          </div>
         </div>
       </div>
 
       <!-- WEEKLY -->
       <div id="tab-weekly" style="display:none">
         <div class="chart-card">
-          <h4>📅 Haftalık Yoğunluk — Gün Bazlı</h4>
+          <h4>📅 Haftalık Yoğunluk — Gün Bazlı (Sipariş Sayısı)</h4>
           <div class="bar-chart-wrap"><div class="bar-chart" id="chart-weekly"></div></div>
-          <div class="chart-inputs">
-            <div class="field" style="margin:0;flex:1"><label>Gün</label>
-              <select id="w-day">
-                <option value="0">Pazartesi</option><option value="1">Salı</option>
-                <option value="2">Çarşamba</option><option value="3">Perşembe</option>
-                <option value="4">Cuma</option><option value="5">Cumartesi</option>
-                <option value="6">Pazar</option>
-              </select></div>
-            <div class="field" style="margin:0;flex:1"><label>Yoğunluk (30–360)</label>
-              <input type="number" id="w-val" min="30" max="360" placeholder="150"></div>
-            <button class="btn btn-coral" onclick="applyWeekly()" style="align-self:flex-end">Uygula</button>
-          </div>
         </div>
       </div>
 
       <!-- MONTHLY -->
       <div id="tab-monthly" style="display:none">
         <div class="chart-card">
-          <h4>📅 Aylık Yoğunluk</h4>
+          <h4>📅 Aylık Yoğunluk (Sipariş Sayısı)</h4>
           <div class="bar-chart-wrap"><div class="bar-chart" id="chart-monthly"></div></div>
-          <div class="chart-inputs">
-            <div class="field" style="margin:0;flex:1"><label>Ay</label>
-              <select id="m-month">
-                <option value="0">Ocak</option><option value="1">Şubat</option><option value="2">Mart</option>
-                <option value="3">Nisan</option><option value="4">Mayıs</option><option value="5">Haziran</option>
-                <option value="6">Temmuz</option><option value="7">Ağustos</option><option value="8">Eylül</option>
-                <option value="9">Ekim</option><option value="10">Kasım</option><option value="11">Aralık</option>
-              </select></div>
-            <div class="field" style="margin:0;flex:1"><label>Yoğunluk (500–2500)</label>
-              <input type="number" id="m-val" min="500" max="2500" placeholder="1200"></div>
-            <button class="btn btn-coral" onclick="applyMonthly()" style="align-self:flex-end">Uygula</button>
-          </div>
         </div>
       </div>
     </div>
@@ -809,11 +806,21 @@ input,select,textarea,button{font-family:var(--body)}
       </div>
     </div>
 
+    <!-- SÜREM KISITLI -->
+    <div class="rush-card">
+      <h4>⚡ <span id="rush-title-lbl">Sürem Kısıtlı!</span></h4>
+      <div style="font-size:.82rem;color:var(--text2);margin-bottom:.9rem" id="rush-subtitle-lbl">En hızlı hazırlanan yemekleri görün ve hemen sipariş verin.</div>
+      <button class="rush-btn" onclick="toggleRush()">
+        <span>⚡</span> <span id="rush-btn-lbl">Hızlı Yemekleri Göster</span>
+      </button>
+      <div class="rush-results" id="rush-results"></div>
+    </div>
+
     <!-- CRAVING -->
     <div class="craving-card">
       <h4 id="craving-h">🤔 Canın Ne Çekti?</h4>
       <div class="craving-row">
-        <input class="craving-inp" id="craving-inp" placeholder="Kebap, çorba, soğuk içecek...">
+        <input class="craving-inp" id="craving-inp" placeholder="Kebap, çorba, soğuk içecek..." onkeydown="if(event.key==='Enter')doCraving()">
         <button class="btn btn-coral" onclick="doCraving()" id="craving-btn">Ara</button>
       </div>
       <div class="craving-result" id="craving-res"></div>
@@ -897,7 +904,7 @@ input,select,textarea,button{font-family:var(--body)}
         </div>
       </div>
     </div>
-    <div class="cash-notice" id="cash-notice" id="cash-notice-text">🔴 Lütfen kasaya gidiniz.</div>
+    <div class="cash-notice" id="cash-notice">🔴 Lütfen kasaya gidiniz.</div>
     <div class="card-form" id="card-form">
       <div class="field"><label id="lbl-cardno">Kart Numarası</label>
         <input type="text" id="cardno" placeholder="•••• •••• •••• ••••" maxlength="19" oninput="fmtCard(this)"></div>
@@ -908,16 +915,23 @@ input,select,textarea,button{font-family:var(--body)}
           <input type="text" id="cardcvv" placeholder="•••" maxlength="3"></div>
       </div>
     </div>
-    <div class="field">
-      <label id="lbl-tip">Bahşiş</label>
-      <div class="tip-opts">
-        <button class="tip-opt sel" onclick="setTip(0,this)">Yok</button>
-        <button class="tip-opt" onclick="setTip(5,this)">%5</button>
-        <button class="tip-opt" onclick="setTip(10,this)">%10</button>
-        <button class="tip-opt" onclick="setTip(15,this)">%15</button>
-        <button class="tip-opt" onclick="setTip(20,this)">%20</button>
+
+    <!-- TIP: manual TL input -->
+    <div class="tip-wrap">
+      <label id="lbl-tip">Bahşiş (İsteğe Bağlı)</label>
+      <div class="tip-input-row">
+        <span class="tip-currency">₺</span>
+        <input type="number" class="tip-tl-inp" id="tip-amount" placeholder="0" min="0" oninput="onTipInput()">
+        <div class="tip-presets">
+          <button class="tip-preset-btn" onclick="setTipPreset(10)">₺10</button>
+          <button class="tip-preset-btn" onclick="setTipPreset(20)">₺20</button>
+          <button class="tip-preset-btn" onclick="setTipPreset(50)">₺50</button>
+          <button class="tip-preset-btn" onclick="setTipPreset(0)">Yok</button>
+        </div>
       </div>
+      <div class="tip-total-preview" id="tip-total-preview"></div>
     </div>
+
     <div class="pay-actions">
       <button class="btn btn-coral" style="flex:1" id="pay-confirm-btn" onclick="doPayment()">Ödemeyi Tamamla</button>
       <button class="btn btn-ghost" onclick="goBackToCustomer()">Geri</button>
@@ -970,91 +984,99 @@ let peaks=[];
 let orders=[];
 let leaderboard=[];
 let payMethod='card';
-let tipPct=0;
+let tipAmount=0;
 let menuFilter='all';
+let rushVisible=false;
 
 const EMOJIS={yemek:'🍖',sicak:'☕',soguk:'🧊',corba:'🍲'};
 const DAYS=['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
 const MONTHS=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 
-let dailyD={'09:00':0,'11:00':0,'13:00':0,'15:00':0,'17:00':0,'19:00':0,'21:00':0,'23:00':0};
-let weeklyD=[0,0,0,0,0,0,0];
-let monthlyD=Array(12).fill(0);
-
 /* Translations */
 const T={
   tr:{greet:'Hoş geldiniz',weekFav:"Bu Haftanın Favorisi",popSub:'En çok sipariş edilen',
-    craving:'🤔 Canın Ne Çekti?',cravingPH:'Kebap, çorba, soğuk içecek...',cravingBtn:'Ara',
+    craving:'🤔 Canın Ne Çekti?',cravingPH:'Limonata, kebap, çay...',cravingBtn:'Ara',
     foods:'Yemekler',soups:'Çorbalar',drinks:'İçecekler',cartH:'Sepetim',cartTotal:'Toplam',
     checkout:'Ödemeye Geç 💳',payH:'Ödeme',paySub:'Siparişinizi tamamlayın',payMethod:'Ödeme Yöntemi',
-    cardL:'Kredi Kartı',cashL:'Nakit',cardNo:'Kart Numarası',cardExp:'Son Kullanma',tipL:'Bahşiş',
+    cardL:'Kredi Kartı',cashL:'Nakit',cardNo:'Kart Numarası',cardExp:'Son Kullanma',tipL:'Bahşiş (İsteğe Bağlı)',
     payBtn:'Ödemeyi Tamamla',cashNotice:'🔴 Lütfen kasaya gidiniz.',
     note:'Not ekle...',addCart:'Sepete Ekle',success:'ÖDEME BAŞARILI',fail:'ÖDEME BAŞARISIZ',
-    rank:'Sıralama',totalL:'Toplam'},
+    rank:'Sıralama',totalL:'Toplam',
+    rushTitle:'Sürem Kısıtlı!',rushSub:'En hızlı hazırlanan yemekleri görün ve hemen sipariş verin.',
+    rushBtn:'Hızlı Yemekleri Göster',rushHide:'Gizle'},
   en:{greet:'Welcome',weekFav:"This Week's Favorite",popSub:'Most ordered',
-    craving:"🤔 What's Your Craving?",cravingPH:'Kebab, soup, cold drink...',cravingBtn:'Search',
+    craving:"🤔 What's Your Craving?",cravingPH:'Lemonade, kebab, tea...',cravingBtn:'Search',
     foods:'Foods',soups:'Soups',drinks:'Drinks',cartH:'My Cart',cartTotal:'Total',
     checkout:'Checkout 💳',payH:'Payment',paySub:'Complete your order',payMethod:'Payment Method',
-    cardL:'Credit Card',cashL:'Cash',cardNo:'Card Number',cardExp:'Expiry',tipL:'Tip',
+    cardL:'Credit Card',cashL:'Cash',cardNo:'Card Number',cardExp:'Expiry',tipL:'Tip (Optional)',
     payBtn:'Complete Payment',cashNotice:'🔴 Please go to the cashier.',
     note:'Add note...',addCart:'Add to Cart',success:'PAYMENT SUCCESSFUL',fail:'PAYMENT FAILED',
-    rank:'Ranking',totalL:'Total'},
+    rank:'Ranking',totalL:'Total',
+    rushTitle:'In a Rush!',rushSub:'See the fastest dishes and order now.',
+    rushBtn:'Show Quick Dishes',rushHide:'Hide'},
   es:{greet:'Bienvenido/a',weekFav:'El Favorito de la Semana',popSub:'Más solicitado',
-    craving:'🤔 ¿Qué te apetece?',cravingPH:'Kebab, sopa, bebida fría...',cravingBtn:'Buscar',
+    craving:'🤔 ¿Qué te apetece?',cravingPH:'Limonada, kebab, té...',cravingBtn:'Buscar',
     foods:'Comidas',soups:'Sopas',drinks:'Bebidas',cartH:'Mi Carrito',cartTotal:'Total',
     checkout:'Pagar 💳',payH:'Pago',paySub:'Completa tu pedido',payMethod:'Método de Pago',
-    cardL:'Tarjeta',cashL:'Efectivo',cardNo:'Número de Tarjeta',cardExp:'Vencimiento',tipL:'Propina',
+    cardL:'Tarjeta',cashL:'Efectivo',cardNo:'Número de Tarjeta',cardExp:'Vencimiento',tipL:'Propina (Opcional)',
     payBtn:'Completar Pago',cashNotice:'🔴 Por favor diríjase a caja.',
     note:'Añadir nota...',addCart:'Agregar',success:'PAGO EXITOSO',fail:'PAGO FALLIDO',
-    rank:'Clasificación',totalL:'Total'}
+    rank:'Clasificación',totalL:'Total',
+    rushTitle:'¡Sin Tiempo!',rushSub:'Ve los platos más rápidos y pide ahora.',
+    rushBtn:'Mostrar Platos Rápidos',rushHide:'Ocultar'}
 };
 
-const DEFAULT_MENU=[
-  {id:'dm01',name:'Adana Kebabı',cat:'yemek',price:220,time:25,rating:4.8,emoji:'🥩',stock:null},
-  {id:'dm02',name:'Tokat Kebabı',cat:'yemek',price:200,time:22,rating:4.6,emoji:'🍖',stock:null},
-  {id:'dm03',name:'Izgara Tavuk',cat:'yemek',price:175,time:18,rating:4.5,emoji:'🍗',stock:null},
-  {id:'dm04',name:'Lahmacun',cat:'yemek',price:90,time:12,rating:4.7,emoji:'🫓',stock:null},
-  {id:'dm05',name:'Bonfile',cat:'yemek',price:320,time:30,rating:4.9,emoji:'🥩',stock:null},
-  {id:'dm06',name:'Mercimek Çorbası',cat:'corba',price:60,time:10,rating:4.6,emoji:'🍲',stock:null},
-  {id:'dm07',name:'Domates Çorbası',cat:'corba',price:55,time:10,rating:4.4,emoji:'🍅',stock:null},
-  {id:'dm08',name:'Mısır Çorbası',cat:'corba',price:58,time:10,rating:4.3,emoji:'🌽',stock:null},
-  {id:'dm09',name:'Tarhana Çorbası',cat:'corba',price:52,time:10,rating:4.5,emoji:'🥣',stock:null},
-  {id:'dm10',name:'Kola',cat:'soguk',price:35,time:1,rating:4.2,emoji:'🥤',stock:10},
-  {id:'dm11',name:'Ayran',cat:'soguk',price:20,time:1,rating:4.6,emoji:'🥛',stock:10},
-  {id:'dm12',name:'Ice Tea',cat:'soguk',price:38,time:1,rating:4.1,emoji:'🍹',stock:10},
-  {id:'dm13',name:'Su',cat:'soguk',price:10,time:1,rating:4.0,emoji:'💧',stock:15},
-  {id:'dm14',name:'Türk Kahvesi',cat:'sicak',price:45,time:8,rating:4.7,emoji:'☕',stock:10},
-  {id:'dm15',name:'Çay',cat:'sicak',price:15,time:5,rating:4.8,emoji:'🍵',stock:20},
+/* ============================================================
+   CRAVING KNOWLEDGE BASE
+   keyword arrays → matched menu item keywords or categories
+============================================================ */
+const CRAVING_MAP=[
+  // Sıcak/soğuk içecek türleri
+  {keys:['limonata','lemonade','limon'],suggest:{name:'Churchill Limonata',emoji:'🍋',hint:'Taze, ferahlatıcı bir alternatif'}},
+  {keys:['ayran'],cat:'soguk',nameHint:'ayran'},
+  {keys:['kola','cola','gazlı'],cat:'soguk',nameHint:'kola'},
+  {keys:['su','water','agua'],cat:'soguk',nameHint:'su'},
+  {keys:['ice tea','iced tea','buzlu çay'],cat:'soguk',nameHint:'ice tea'},
+  {keys:['soğuk','cold','frio'],cat:'soguk'},
+  {keys:['kahve','coffee','cafe'],cat:'sicak',nameHint:'kahve'},
+  {keys:['çay','tea','té'],cat:'sicak',nameHint:'çay'},
+  {keys:['sıcak','hot'],cat:'sicak'},
+  // Yemek türleri
+  {keys:['kebap','kebab'],cat:'yemek',nameHint:'kebab'},
+  {keys:['tavuk','chicken','pollo'],cat:'yemek',nameHint:'tavuk'},
+  {keys:['et','beef','carne','steak','bonfile'],cat:'yemek',nameHint:'bonfile'},
+  {keys:['lahmacun'],cat:'yemek',nameHint:'lahmacun'},
+  {keys:['izgara','grilled'],cat:'yemek'},
+  // Çorba
+  {keys:['çorba','soup','sopa','corba'],cat:'corba'},
+  {keys:['mercimek','lentil'],cat:'corba',nameHint:'mercimek'},
+  {keys:['domates','tomato','tomate'],cat:'corba',nameHint:'domates'},
+  {keys:['mısır','corn'],cat:'corba',nameHint:'mısır'},
+  {keys:['tarhana'],cat:'corba',nameHint:'tarhana'},
 ];
 
 /* ====================================================
    UTILITIES
 ==================================================== */
 function $(id){return document.getElementById(id)}
-function show(id){$(id).style.display='block'}
-function hide(id){$(id).style.display='none'}
+function toast(msg,type='info'){
+  const c=$('toast-container');
+  const t=document.createElement('div');
+  t.className=`toast toast-${type}`;
+  const ico={info:'ℹ️',success:'✅',error:'❌',warn:'⚠️'}[type]||'ℹ️';
+  t.innerHTML=ico+' '+msg;
+  c.appendChild(t);
+  setTimeout(()=>{t.style.animation='notification .35s ease reverse';setTimeout(()=>t.remove(),350)},3500);
+}
+function openModal(id){$(id).classList.add('open')}
+function closeModal(id){$(id).classList.remove('open')}
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   $(id).classList.add('active');
 }
 
-function toast(msg,type='info'){
-  const c=$('toast-container');
-  const t=document.createElement('div');
-  t.className=`toast toast-${type}`;
-  t.innerHTML={info:'ℹ️',success:'✅',error:'❌'}[type]+' '+msg;
-  c.appendChild(t);
-  setTimeout(()=>{t.style.animation='notification .35s ease reverse';setTimeout(()=>t.remove(),350)},3000);
-}
-
-function openModal(id){$(id).classList.add('open')}
-function closeModal(id){$(id).classList.remove('open')}
-
 /* Clock */
-setInterval(()=>{
-  const el=$('clock');
-  if(el)el.textContent=new Date().toLocaleTimeString('tr-TR');
-},1000);
+setInterval(()=>{const el=$('clock');if(el)el.textContent=new Date().toLocaleTimeString('tr-TR')},1000);
 
 /* ====================================================
    AUTH
@@ -1070,7 +1092,6 @@ function loginAdmin(){
     toast('Yönetici paneline hoş geldiniz!','success');
   } else {
     $('admin-err').style.display='block';
-    $('modal-admin .modal-box')?.classList.add('error-shake');
     setTimeout(()=>$('admin-err').style.display='none',2500);
   }
 }
@@ -1098,7 +1119,6 @@ function switchLang(l){
 function applyLang(){
   const t=T[lang];
   const s=(id,val)=>{const el=$(id);if(el)el.textContent=val};
-  const sv=(id,val)=>{const el=$(id);if(el)el.value=val};
   s('user-name-chip',user.name.split(' ')[0]);
   const av=$('user-av');if(av)av.textContent=user.name[0]?.toUpperCase()||'U';
   s('hero-tag',t.weekFav);
@@ -1117,6 +1137,9 @@ function applyLang(){
   const cn=$('cash-notice');if(cn)cn.textContent=t.cashNotice;
   s('lb-title','🏆 '+t.rank);
   s('os-total-lbl',t.totalL);
+  s('rush-title-lbl',t.rushTitle);
+  s('rush-subtitle-lbl',t.rushSub);
+  s('rush-btn-lbl',rushVisible?t.rushHide:t.rushBtn);
 }
 
 /* ====================================================
@@ -1124,10 +1147,11 @@ function applyLang(){
 ==================================================== */
 function showPanel(id,el){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  $(id==='overview'?'panel-overview':
+  const panelId=id==='overview'?'panel-overview':
     id==='menu-mgmt'?'panel-menu-mgmt':
     id==='stock'?'panel-stock':
-    id==='analytics'?'panel-analytics':'panel-campaign').classList.add('active');
+    id==='analytics'?'panel-analytics':'panel-campaign';
+  $(panelId).classList.add('active');
   document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
   if(el)el.classList.add('active');
   if(id==='stock')renderStockPanel();
@@ -1135,7 +1159,6 @@ function showPanel(id,el){
   if(id==='campaign')renderCampaignPanel();
   if(id==='overview')renderOverview();
 }
-
 function renderAdminAll(){renderAdminMenu();renderOverview()}
 
 function renderOverview(){
@@ -1143,15 +1166,13 @@ function renderOverview(){
   $('ov-order-count').textContent=orders.length;
   $('ov-revenue').textContent='₺'+orders.reduce((s,o)=>s+o.total,0).toLocaleString();
   $('ov-camp-count').textContent=campaigns.length;
-  // Last orders
   const ov=$('ov-orders');
   if(orders.length===0){ov.innerHTML='<div style="color:var(--text2)">Henüz sipariş yok.</div>'}
   else{ov.innerHTML=orders.slice(-5).reverse().map(o=>`<div style="padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.82rem;display:flex;justify-content:space-between"><span>${o.user}</span><span style="color:var(--coral);font-family:var(--mono)">₺${o.total}</span></div>`).join('')}
-  // Critical stock
-  const crit=menuItems.filter(m=>m.stock!==null&&m.stock<=3);
+  const crit=menuItems.filter(m=>m.stock!==null&&m.stock<10);
   const ovc=$('ov-critical');
   if(crit.length===0){ovc.innerHTML='<div style="color:var(--green);font-size:.82rem">✓ Kritik stok yok</div>'}
-  else{ovc.innerHTML=crit.map(m=>`<div style="padding:.3rem 0;border-bottom:1px solid var(--border);font-size:.82rem;display:flex;justify-content:space-between;color:var(--red)"><span>${m.emoji} ${m.name}</span><span>${m.stock} kaldı</span></div>`).join('')}
+  else{ovc.innerHTML=crit.map(m=>`<div style="padding:.3rem 0;border-bottom:1px solid var(--border);font-size:.82rem;display:flex;justify-content:space-between;color:${m.stock<=3?'var(--red)':'var(--gold)'}"><span>${m.emoji} ${m.name}</span><span>${m.stock} kaldı ${m.stock<=3?'🚨':'⚠️'}</span></div>`).join('')}
 }
 
 /* ====================================================
@@ -1172,20 +1193,16 @@ function addItem(){
   renderAdminMenu();
   toast(`${name} menüye eklendi!`,'success');
 }
-
 function delItem(id){
   menuItems=menuItems.filter(m=>m.id!==id);
-  renderAdminMenu();
-  toast('Ürün silindi.','info');
+  renderAdminMenu();toast('Ürün silindi.','info');
 }
-
 function filterMenu(f,btn){
   menuFilter=f;
   document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
   renderAdminMenu();
 }
-
 function renderAdminMenu(){
   const el=$('admin-menu-grid');
   const filtered=menuFilter==='all'?menuItems:menuItems.filter(m=>m.cat===menuFilter);
@@ -1203,7 +1220,7 @@ function renderAdminMenu(){
       <div class="mc-meta">
         <span>⏱ ${m.time}dk</span>
         <span>⭐ ${m.rating}</span>
-        ${m.stock!==null?`<span style="color:${m.stock<=3?'var(--red)':'var(--green)'}">📦 ${m.stock}</span>`:''}
+        ${m.stock!==null?`<span style="color:${m.stock<10?'var(--gold)':'var(--green)'}">📦 ${m.stock}${m.stock<10?' ⚠️':''}</span>`:''}
       </div>
       <div class="mc-price">₺${m.price}</div>
     </div>`).join('');
@@ -1213,7 +1230,6 @@ function renderAdminMenu(){
    ADMIN: STOCK
 ==================================================== */
 function renderStockPanel(){
-  // Top foods
   const sales={};
   orders.forEach(o=>o.items.forEach(i=>{const m=menuItems.find(x=>x.id===i.id);if(m&&(m.cat==='yemek'||m.cat==='corba')){sales[i.id]=(sales[i.id]||0)+i.qty}}));
   const sorted=Object.entries(sales).sort((a,b)=>b[1]-a[1]).slice(0,6);
@@ -1228,50 +1244,76 @@ function renderStockPanel(){
         <div class="tf-warn">Malzeme kontrol ⚠️</div>
       </div>`}).join('');
 
-  // Drinks
   const drinks=menuItems.filter(m=>m.stock!==null);
   const ds=$('drink-stock');
+  const WARN_LEVEL=10;
   ds.innerHTML=drinks.length===0?'<div style="color:var(--text2);font-size:.83rem">İçecek yok.</div>':
     drinks.map(d=>{
-      const maxS=15;const pct=Math.round((d.stock/maxS)*100);const warn=d.stock<=3;
+      const maxS=20;const pct=Math.min(100,Math.round((d.stock/maxS)*100));
+      const warn=d.stock<WARN_LEVEL;const critical=d.stock<=3;
       return`<div class="drink-row">
         <div class="drink-emoji">${d.emoji}</div>
         <div class="drink-name">${d.name}</div>
         <div class="drink-stock-bar"><div class="drink-stock-fill ${warn?'warn':'ok'}" style="width:${pct}%"></div></div>
         <div class="drink-count ${warn?'warn':'ok'}">${d.stock}</div>
+        ${warn?`<div class="drink-warn-badge">${critical?'🚨 Kritik':'⚠️ Dikkat'}</div>`:''}
       </div>`;}).join('');
+
+  // Toast warnings for low stock
+  drinks.filter(d=>d.stock<WARN_LEVEL).forEach(d=>{
+    toast(`${d.emoji} ${d.name}: ${d.stock} adet kaldı — stok az!`,'warn');
+  });
 }
 
 /* ====================================================
-   ADMIN: CHARTS
+   ADMIN: ANALYTICS — computed from orders
 ==================================================== */
-function renderBar(elId,labels,values,maxV,suffix=''){
+function computeHourlyCounts(){
+  // 8 buckets: 08-10, 10-12, 12-14, 14-16, 16-18, 18-20, 20-22, 22-24
+  const labels=['08-10','10-12','12-14','14-16','16-18','18-20','20-22','22-24'];
+  const counts=Array(8).fill(0);
+  orders.forEach(o=>{
+    const h=new Date(o.ts).getHours();
+    const bucket=Math.min(7,Math.max(0,Math.floor((h-8)/2)));
+    counts[bucket]++;
+  });
+  return{labels,counts};
+}
+function computeWeeklyCounts(){
+  const counts=Array(7).fill(0);
+  orders.forEach(o=>{
+    const d=new Date(o.ts).getDay();// 0=Sun
+    const idx=d===0?6:d-1;// Mon=0
+    counts[idx]++;
+  });
+  return{labels:DAYS,counts};
+}
+function computeMonthlyCounts(){
+  const counts=Array(12).fill(0);
+  orders.forEach(o=>{counts[new Date(o.ts).getMonth()]++});
+  return{labels:MONTHS,counts};
+}
+
+function renderBar(elId,labels,values,suffix='kişi'){
   const el=$(elId);
+  const maxV=Math.max(...values,1);
+  if(values.every(v=>v===0)){
+    el.innerHTML=`<div class="chart-empty-note">📭 Henüz sipariş verisi yok. Müşteriler sipariş verdikçe grafik güncellenir.</div>`;
+    return;
+  }
   el.innerHTML=labels.map((l,i)=>{
-    const pct=maxV>0?Math.round((values[i]/maxV)*100):0;
+    const pct=Math.round((values[i]/maxV)*100);
     return`<div class="bar-row">
       <div class="bar-label">${l}</div>
       <div class="bar-track">
-        <div class="bar-fill" style="width:${pct}%">${values[i]>0?values[i]+suffix:''}</div>
+        <div class="bar-fill" style="width:${pct}%">${values[i]>0?values[i]+' '+suffix:''}</div>
       </div>
     </div>`;}).join('');
 }
-function renderDailyChart(){renderBar('chart-daily',Object.keys(dailyD),Object.values(dailyD),80)}
-function renderWeeklyChart(){renderBar('chart-weekly',DAYS,weeklyD,360)}
-function renderMonthlyChart(){renderBar('chart-monthly',MONTHS,monthlyD,2500)}
+function renderDailyChart(){const{labels,counts}=computeHourlyCounts();renderBar('chart-daily',labels,counts,'sipariş')}
+function renderWeeklyChart(){const{labels,counts}=computeWeeklyCounts();renderBar('chart-weekly',labels,counts,'sipariş')}
+function renderMonthlyChart(){const{labels,counts}=computeMonthlyCounts();renderBar('chart-monthly',labels,counts,'sipariş')}
 
-function applyDaily(){
-  const h=$('d-hour').value,v=Math.max(10,Math.min(80,parseInt($('d-val').value)||0));
-  if(dailyD.hasOwnProperty(h)){dailyD[h]=v;renderDailyChart();toast(`${h} saati güncellendi`,'success')}
-}
-function applyWeekly(){
-  const d=parseInt($('w-day').value),v=Math.max(30,Math.min(360,parseInt($('w-val').value)||0));
-  weeklyD[d]=v;renderWeeklyChart();toast(`${DAYS[d]} güncellendi`,'success');
-}
-function applyMonthly(){
-  const m=parseInt($('m-month').value),v=Math.max(500,Math.min(2500,parseInt($('m-val').value)||0));
-  monthlyD[m]=v;renderMonthlyChart();toast(`${MONTHS[m]} güncellendi`,'success');
-}
 function switchTab(t,btn){
   ['daily','weekly','monthly'].forEach(x=>$('tab-'+x).style.display=x===t?'block':'none');
   document.querySelectorAll('.cht-tab').forEach(b=>b.classList.remove('active'));
@@ -1352,8 +1394,11 @@ function renderFoodGrid(gid,items,cntId){
   el.innerHTML=items.map(m=>{
     const outStock=m.stock!==null&&m.stock<=0;
     const stockTxt=m.stock!==null?(outStock?'Tükendi':'Stok: '+m.stock):'';
+    const imgHtml=m.photo
+      ?`<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">${m.emoji}`
+      :m.emoji;
     return`<div class="food-card" id="fc-${m.id}">
-      <div class="food-img-wrap">${m.emoji}</div>
+      <div class="food-img-wrap">${imgHtml}</div>
       <div class="food-body">
         <div class="food-name">${m.name}</div>
         <div class="food-row">
@@ -1385,31 +1430,91 @@ function renderLeaderboard(){
 }
 
 /* ====================================================
-   CRAVING
+   SÜREM KISITLI — fastest dishes
+==================================================== */
+function toggleRush(){
+  rushVisible=!rushVisible;
+  const btn=$('rush-btn-lbl');
+  const t=T[lang];
+  if(btn)btn.textContent=rushVisible?t.rushHide:t.rushBtn;
+  const res=$('rush-results');
+  if(!rushVisible){res.classList.remove('show');return}
+  // Sort only food/soup items (not drinks) by prep time
+  const available=menuItems
+    .filter(m=>(m.cat==='yemek'||m.cat==='corba')&&(m.stock===null||m.stock>0))
+    .sort((a,b)=>a.time-b.time)
+    .slice(0,6);
+  if(available.length===0){
+    res.innerHTML='<div style="font-size:.83rem;color:var(--text2)">Stokta ürün yok.</div>';
+    res.classList.add('show');return;
+  }
+  res.innerHTML=available.map((m,i)=>`
+    <div class="rush-item">
+      <div class="rush-rank">${i+1}</div>
+      <div class="rush-emoji">${m.emoji}</div>
+      <div class="rush-name">${m.name}</div>
+      <div class="rush-time">⏱ ${m.time}dk</div>
+      <button class="rush-add-btn" onclick="addToCart('${m.id}')">+ Ekle</button>
+    </div>`).join('');
+  res.classList.add('show');
+}
+
+/* ====================================================
+   CRAVING — smart suggestion
 ==================================================== */
 function doCraving(){
   const q=$('craving-inp').value.toLowerCase().trim();
   const el=$('craving-res');
   if(!q){el.classList.remove('show');return}
-  const keywords={
-    'kebap':['kebab'],'tavuk':['tavuk'],'et':['bonfile','kebab'],'çorba':['corba'],
-    'içecek':['soguk','sicak'],'soğuk':['soguk'],'sıcak':['sicak'],'kola':['kola'],
-    'ayran':['ayran'],'su':['su'],'kahve':['kahve'],'çay':['çay'],
-    'balık':[],'pizza':[]
-  };
+
   let match=null;
-  for(const [kw,cats] of Object.entries(keywords)){
-    if(q.includes(kw)){
-      match=menuItems.find(m=>cats.some(c=>m.name.toLowerCase().includes(c)||m.cat===c));
+  let hintName=null;
+  let hintEmoji=null;
+  let hintExtra=null;
+
+  // 1. Check craving map
+  for(const rule of CRAVING_MAP){
+    if(rule.keys.some(k=>q.includes(k))){
+      if(rule.suggest){
+        // Special suggestion (e.g. limonata → Churchill)
+        hintName=rule.suggest.name;
+        hintEmoji=rule.suggest.emoji;
+        hintExtra=rule.suggest.hint;
+        // Also try to find real match
+        const real=menuItems.find(m=>m.stock===null||m.stock>0);
+        match=real;
+        break;
+      }
+      if(rule.nameHint){
+        match=menuItems.find(m=>(m.stock===null||m.stock>0)&&m.name.toLowerCase().includes(rule.nameHint));
+      }
+      if(!match&&rule.cat){
+        match=menuItems.find(m=>(m.stock===null||m.stock>0)&&m.cat===rule.cat);
+      }
       if(match)break;
     }
   }
-  if(!match)match=menuItems.find(m=>m.name.toLowerCase().includes(q)||m.cat.includes(q));
-  if(match){
-    el.innerHTML=`<span style="font-size:1.5rem">${match.emoji}</span><span><strong>${match.name}</strong> önerimiz var! — ₺${match.price}</span>`;
+
+  // 2. Fallback: direct name search
+  if(!match&&!hintName){
+    match=menuItems.find(m=>(m.stock===null||m.stock>0)&&(m.name.toLowerCase().includes(q)||m.cat.includes(q)));
+  }
+
+  if(hintName){
+    // Special creative suggestion
+    el.innerHTML=`
+      <span style="font-size:1.5rem">${hintEmoji}</span>
+      <div>
+        <strong style="color:var(--coral)">${hintName}</strong> öneririz!
+        ${hintExtra?`<div style="font-size:.78rem;color:var(--text2);margin-top:.2rem">${hintExtra}</div>`:''}
+        ${match?`<div style="font-size:.78rem;color:var(--text2);margin-top:.3rem">Menüden benzer: ${match.emoji} ${match.name} — ₺${match.price}</div>`:''}
+      </div>`;
+    el.classList.add('show');
+  } else if(match){
+    el.innerHTML=`<span style="font-size:1.5rem">${match.emoji}</span><span><strong>${match.name}</strong> önerimiz var! — ₺${match.price} · ${match.time}dk</span>`;
     el.classList.add('show');
   } else {
-    el.innerHTML='<span>😕 Üzgünüz, eşleşen ürün bulunamadı.</span>';
+    el.innerHTML='<span>😕 Eşleşen ürün bulunamadı. Menüye göz atın!</span>';
     el.classList.add('show');
   }
 }
@@ -1419,12 +1524,12 @@ function doCraving(){
 ==================================================== */
 function addToCart(id){
   const m=menuItems.find(x=>x.id===id);if(!m)return;
+  if(m.stock!==null&&m.stock<=0){toast('Bu ürün stokta yok!','error');return}
   const note=$('note-'+id)?.value||'';
   const ex=cart.find(c=>c.id===id);
   if(ex){ex.qty++;ex.note=note}
   else cart.push({id,name:m.name,price:m.price,qty:1,note,emoji:m.emoji});
   updateCartFab();renderCartDrawer();
-  // Flash card
   const fc=$('fc-'+id);
   if(fc){fc.classList.add('added');setTimeout(()=>fc.classList.remove('added'),600)}
   toast(`${m.emoji} ${m.name} sepete eklendi`,'success');
@@ -1465,10 +1570,12 @@ function toggleCart(){$('cart-drawer').classList.toggle('open')}
 ==================================================== */
 function toPayment(){
   if(!cart.length){toast('Sepetiniz boş!','error');return}
-  const total=cart.reduce((s,i)=>s+(i.price*i.qty),0);
+  const base=cart.reduce((s,i)=>s+(i.price*i.qty),0);
   $('os-items').innerHTML=cart.map(i=>`<div class="os-item"><span>${i.emoji} ${i.name} x${i.qty}</span><span>₺${(i.price*i.qty).toFixed(0)}</span></div>`).join('');
-  $('os-total-val').textContent='₺'+total.toFixed(0);
-  tipPct=0;document.querySelectorAll('.tip-opt').forEach((b,i)=>b.classList.toggle('sel',i===0));
+  $('os-total-val').textContent='₺'+base.toFixed(0);
+  tipAmount=0;
+  const ti=$('tip-amount');if(ti)ti.value='';
+  $('tip-total-preview').textContent='';
   selMethod('card');
   $('cart-drawer').classList.remove('open');
   showScreen('screen-payment');
@@ -1476,22 +1583,40 @@ function toPayment(){
 function goBackToCustomer(){showScreen('screen-customer')}
 function selMethod(m){
   payMethod=m;
-  ['card','cash'].forEach(x=>{
-    $('pm-'+x).classList.toggle('sel',x===m);
-  });
+  ['card','cash'].forEach(x=>{$('pm-'+x).classList.toggle('sel',x===m)});
   $('card-form').style.display=m==='card'?'block':'none';
   $('cash-notice').style.display=m==='cash'?'block':'none';
 }
-function setTip(pct,btn){
-  tipPct=pct;
-  document.querySelectorAll('.tip-opt').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  const base=cart.reduce((s,i)=>s+(i.price*i.qty),0);
-  const total=base*(1+pct/100);
-  $('os-total-val').textContent='₺'+total.toFixed(0)+(pct>0?` (+%${pct} bahşiş)`:'');
+
+/* TIP: manual TL */
+function onTipInput(){
+  const val=parseFloat($('tip-amount').value)||0;
+  tipAmount=Math.max(0,val);
+  updateTipPreview();
 }
+function setTipPreset(tl){
+  tipAmount=tl;
+  const ti=$('tip-amount');if(ti)ti.value=tl>0?tl:'';
+  updateTipPreview();
+}
+function updateTipPreview(){
+  const base=cart.reduce((s,i)=>s+(i.price*i.qty),0);
+  const total=base+tipAmount;
+  const el=$('tip-total-preview');
+  if(el){
+    if(tipAmount>0){
+      el.textContent=`Yemek: ₺${base.toFixed(0)} + Bahşiş: ₺${tipAmount.toFixed(0)} = Toplam: ₺${total.toFixed(0)}`;
+      $('os-total-val').textContent='₺'+total.toFixed(0);
+    } else {
+      el.textContent='';
+      $('os-total-val').textContent='₺'+base.toFixed(0);
+    }
+  }
+}
+
 function fmtCard(el){let v=el.value.replace(/\D/g,'').slice(0,16);el.value=v.replace(/(\d{4})(?=\d)/g,'$1 ')}
 function fmtExp(el){let v=el.value.replace(/\D/g,'').slice(0,4);if(v.length>=2)v=v.slice(0,2)+'/'+v.slice(2);el.value=v}
+
 function doPayment(){
   if(payMethod==='card'){
     const no=$('cardno').value.replace(/\s/g,'');
@@ -1502,14 +1627,21 @@ function doPayment(){
   finalizeOrder();
 }
 function finalizeOrder(){
-  // Deduct stock
   cart.forEach(ci=>{const m=menuItems.find(x=>x.id===ci.id);if(m&&m.stock!==null)m.stock=Math.max(0,m.stock-ci.qty)});
-  const total=cart.reduce((s,i)=>s+(i.price*i.qty),0);
-  const pts=Math.floor(total/10);
-  orders.push({user:user.name,items:[...cart],total,pts});
+  const base=cart.reduce((s,i)=>s+(i.price*i.qty),0);
+  const total=base+tipAmount;
+  const pts=Math.floor(base/10);
+  const ts=Date.now();
+  orders.push({user:user.name,items:[...cart],total,pts,ts});
   const lb=leaderboard.find(l=>l.name===user.name);
   if(lb)lb.pts+=pts;else leaderboard.push({name:user.name,pts});
-  cart=[];updateCartFab();renderCartDrawer();
+
+  // Check stock warnings after order
+  menuItems.filter(m=>m.stock!==null&&m.stock<10).forEach(m=>{
+    setTimeout(()=>toast(`⚠️ ${m.emoji} ${m.name}: ${m.stock} adet kaldı — stok azalıyor!`,'warn'),500);
+  });
+
+  cart=[];tipAmount=0;updateCartFab();renderCartDrawer();
 }
 function showResult(ok){
   const overlay=$('result-overlay');
@@ -1519,7 +1651,6 @@ function showResult(ok){
   bubble.className='result-bubble '+(ok?'s':'f');
   overlay.classList.add('show');
   if(ok){
-    // Tick sound via AudioContext
     try{
       const ctx=new(window.AudioContext||window.webkitAudioContext)();
       const osc=ctx.createOscillator();const gain=ctx.createGain();
@@ -1536,6 +1667,27 @@ function showResult(ok){
     if(ok){renderCustomer();showScreen('screen-customer')}
   },2800);
 }
+
+/* ====================================================
+   DEFAULT MENU
+==================================================== */
+const DEFAULT_MENU=[
+  {id:'dm01',name:'Adana Kebabı',cat:'yemek',price:220,time:25,rating:4.8,stock:null,photo:'https://images.ntv.com.tr/images/475adca6-b54a-4e83-a08e-ccdf584d9415.jpg?w=1200&height=1200&mode=crop'},
+  {id:'dm02',name:'Tokat Kebabı',cat:'yemek',price:200,time:22,rating:4.6,emoji:'🍖',stock:null,photo:'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400&q=80'},
+  {id:'dm03',name:'Izgara Tavuk',cat:'yemek',price:175,time:18,rating:4.5,emoji:'🍗',stock:null,photo:'https://images.unsplash.com/photo-1598103442097-8b74394b95c4?w=400&q=80'},
+  {id:'dm04',name:'Lahmacun',cat:'yemek',price:90,time:12,rating:4.7,emoji:'🫓',stock:null,photo:'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80'},
+  {id:'dm05',name:'Bonfile',cat:'yemek',price:320,time:30,rating:4.9,emoji:'🥩',stock:null,photo:'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80'},
+  {id:'dm06',name:'Mercimek Çorbası',cat:'corba',price:60,time:10,rating:4.6,emoji:'🍲',stock:null,photo:'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80'},
+  {id:'dm07',name:'Domates Çorbası',cat:'corba',price:55,time:10,rating:4.4,emoji:'🍅',stock:null,photo:'https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80'},
+  {id:'dm08',name:'Mısır Çorbası',cat:'corba',price:58,time:10,rating:4.3,emoji:'🌽',stock:null,photo:'https://images.unsplash.com/photo-1571104508999-893933ded431?w=400&q=80'},
+  {id:'dm09',name:'Tarhana Çorbası',cat:'corba',price:52,time:10,rating:4.5,emoji:'🥣',stock:null,photo:'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400&q=80'},
+  {id:'dm10',name:'Kola',cat:'soguk',price:35,time:1,rating:4.2,emoji:'🥤',stock:10,photo:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80'},
+  {id:'dm11',name:'Ayran',cat:'soguk',price:20,time:1,rating:4.6,emoji:'🥛',stock:10,photo:'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80'},
+  {id:'dm12',name:'Ice Tea',cat:'soguk',price:38,time:1,rating:4.1,emoji:'🍹',stock:10,photo:'https://images.unsplash.com/photo-1499638673689-79a0b5115d87?w=400&q=80'},
+  {id:'dm13',name:'Su',cat:'soguk',price:10,time:1,rating:4.0,emoji:'💧',stock:15,photo:'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80'},
+  {id:'dm14',name:'Türk Kahvesi',cat:'sicak',price:45,time:8,rating:4.7,emoji:'☕',stock:10,photo:'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&q=80'},
+  {id:'dm15',name:'Çay',cat:'sicak',price:15,time:5,rating:4.8,emoji:'🍵',stock:20,photo:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80'},
+];
 
 /* ====================================================
    INIT
